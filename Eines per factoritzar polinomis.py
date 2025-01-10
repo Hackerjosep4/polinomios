@@ -199,6 +199,32 @@ def multiplicar_polinomis(polinomi_a, polinomi_b):
 
 
 
+def dividir_polinomis(polinomi_a, polinomi_b):
+    polinomi_resultat = []
+    grau_resultat = len(polinomi_a) - len(polinomi_b)
+
+    if grau_resultat < 0:
+        raise Exception("El polinomi primer polinomi ha de ser de grau superior o igual al segon")
+
+    for i in range(0, grau_resultat+1):
+        polinomi_resultat.append(0)
+    
+    i = 0
+    while i < len(polinomi_a) and len(polinomi_a)-1-i >= len(polinomi_b)-1:
+        coef_a = polinomi_a[i]
+        grau_a = len(polinomi_a) - 1 - i
+        coef_b = polinomi_b[0]
+        grau_b = len(polinomi_b) - 1
+
+        polinomi_resultat[grau_resultat - (grau_a - grau_b)] = coef_a / coef_b
+
+        for j in range(0, grau_b+1):
+            polinomi_a[i+j] -= monomi * polinomi_b[j]
+    
+    return [polinomi_resultat, polinomi_a]
+
+
+
 def print_factors(nums_extra, factors):
 
     output = f"La factorització es: "
@@ -390,7 +416,9 @@ def fer_suma():
 
     try:
 
+        print("Introdueix el polinomi que vols sumar")
         polinomi_a = demanar_polinomi()
+        print("Introdueix el polinomi pel qual vols sumar")
         polinomi_b = demanar_polinomi()
 
         resultat = sumar_polinomis(polinomi_a, polinomi_b)
@@ -413,7 +441,9 @@ def fer_resta():
 
     try:
 
+        print("Introdueix el polinomi que vols restar")
         polinomi_a = demanar_polinomi()
+        print("Introdueix el polinomi pel qual vols restar")
         polinomi_b = demanar_polinomi()
 
         resultat = restar_polinomis(polinomi_a, polinomi_b)
@@ -436,7 +466,9 @@ def fer_multiplicacio():
 
     try:
 
+        print("Introdueix el polinomi que vols multiplicar")
         polinomi_a = demanar_polinomi()
+        print("Introdueix el polinomi pel qual vols multiplicar")
         polinomi_b = demanar_polinomi()
 
         resultat = multiplicar_polinomis(polinomi_a, polinomi_b)
@@ -459,12 +491,17 @@ def fer_divisio():
 
     try:
 
+        print("Introdueix el polinomi que vols dividir")
         polinomi_a = demanar_polinomi()
+        print("Introdueix el polinomi pel qual vols dividir")
         polinomi_b = demanar_polinomi()
 
-        resultat = [0]#dividir_polinomis(polinomi_a, polinomi_b)
+        resultat, resta = dividir_polinomis(polinomi_a, polinomi_b)
 
+        print("El cuocient es: ")
         print_polinomi(resultat)
+        print("El residu es: ")
+        print_polinomi(resta)
 
     except ValueError:
         print("")
@@ -521,7 +558,7 @@ Opció: ''').strip().lower()
         fer_multiplicacio()
         opcio_valida = True
     elif entrada == "div":
-        print("No implementat")
+        fer_divisio()
         opcio_valida = True
     
     if opcio_valida:
