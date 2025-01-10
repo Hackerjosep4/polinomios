@@ -144,6 +144,61 @@ def divisivilitat(polinomi):
 
 
 
+def sumar_polinomis(polinomi_a, polinomi_b):
+    polinomi_resultat = []
+    if len(polinomi_a) > len(polinomi_b):
+        grau_superior = len(polinomi_a)-1
+    else:
+        grau_superior = len(polinomi_b)-1
+    
+    for i in range(0, grau_superior - (len(polinomi_a)-1)):
+        polinomi_a.append(0)
+    for i in range(0, grau_superior - (len(polinomi_b)-1)):
+        polinomi_b.append(0)
+    
+    for i in range(0, grau_superior+1):
+        polinomi_resultat.append(polinomi_a[i] + polinomi_b[i])
+    
+    return polinomi_resultat
+
+
+
+def restar_polinomis(polinomi_a, polinomi_b):
+    polinomi_resultat = []
+    if len(polinomi_a) > len(polinomi_b):
+        grau_superior = len(polinomi_a)-1
+    else:
+        grau_superior = len(polinomi_b)-1
+    
+    for i in range(0, grau_superior - (len(polinomi_a)-1)):
+        polinomi_a.append(0)
+    for i in range(0, grau_superior - (len(polinomi_b)-1)):
+        polinomi_b.append(0)
+    
+    for i in range(0, grau_superior+1):
+        polinomi_resultat.append(polinomi_a[i] - polinomi_b[i])
+    
+    return polinomi_resultat
+
+
+
+def multiplicar_polinomis(polinomi_a, polinomi_b):
+    polinomi_resultat = []
+    grau_a = len(polinomi_a)-1
+    grau_b = len(polinomi_b)-1
+    grau = len(polinomi_a) + len(polinomi_b) - 2
+
+    for i in range(0, grau+1):
+        polinomi_resultat.append(0)
+    
+    for i in range(0, grau_a+1):
+        for j in range(0, grau_b+1):
+            polinomi_resultat[grau - (grau_a - i) - (grau_b - j)] += polinomi_a[i] * polinomi_b[j]
+    
+    return polinomi_resultat
+
+
+
 def print_factors(nums_extra, factors):
 
     output = f"La factorització es: "
@@ -331,6 +386,98 @@ def fer_rufini():
 
 
 
+def fer_suma():
+
+    try:
+
+        polinomi_a = demanar_polinomi()
+        polinomi_b = demanar_polinomi()
+
+        resultat = sumar_polinomis(polinomi_a, polinomi_b)
+
+        print_polinomi(resultat)
+
+    except ValueError:
+        print("")
+        print("S'ha produit un error inesperat: Entrada inválida. Has de ingresar un nombre racional.")
+        print("")
+
+    except Exception as e:
+        print("")
+        print(f"S'ha produit un error inesperat: {e}")
+        print("")
+
+
+
+def fer_resta():
+
+    try:
+
+        polinomi_a = demanar_polinomi()
+        polinomi_b = demanar_polinomi()
+
+        resultat = restar_polinomis(polinomi_a, polinomi_b)
+
+        print_polinomi(resultat)
+
+    except ValueError:
+        print("")
+        print("S'ha produit un error inesperat: Entrada inválida. Has de ingresar un nombre racional.")
+        print("")
+
+    except Exception as e:
+        print("")
+        print(f"S'ha produit un error inesperat: {e}")
+        print("")
+
+
+
+def fer_multiplicacio():
+
+    try:
+
+        polinomi_a = demanar_polinomi()
+        polinomi_b = demanar_polinomi()
+
+        resultat = multiplicar_polinomis(polinomi_a, polinomi_b)
+
+        print_polinomi(resultat)
+
+    except ValueError:
+        print("")
+        print("S'ha produit un error inesperat: Entrada inválida. Has de ingresar un nombre racional.")
+        print("")
+
+    except Exception as e:
+        print("")
+        print(f"S'ha produit un error inesperat: {e}")
+        print("")
+
+
+
+def fer_divisio():
+
+    try:
+
+        polinomi_a = demanar_polinomi()
+        polinomi_b = demanar_polinomi()
+
+        resultat = [0]#dividir_polinomis(polinomi_a, polinomi_b)
+
+        print_polinomi(resultat)
+
+    except ValueError:
+        print("")
+        print("S'ha produit un error inesperat: Entrada inválida. Has de ingresar un nombre racional.")
+        print("")
+
+    except Exception as e:
+        print("")
+        print(f"S'ha produit un error inesperat: {e}")
+        print("")
+
+
+
 
 # Codi d'interaccio amb l'usuari / Codi d'iniciació del programa
 
@@ -339,26 +486,42 @@ entrada = ""
 while entrada != "s":
     entrada = input('''
 Menu:
-    F - Factoritzador
-    T - Teorema del residu
-    D - Trobar divior
-    R - Rufini
+    Fac - Factoritzar polinomi
+    Teo - Teorema del residu
+    Exa - Trobar divisor exacte
+    Ruf - Rufini
+    Sum - Sumar polinomis
+    Res - Restar polinomis
+    Mul - Multiplicar polinomis
+    Div - Dividir polinomis
     S - Sortir
 Opció: ''').strip().lower()
     print("")
 
     opcio_valida = False
-    if entrada == "f":
+    if entrada == "fac":
         factoritzador()
         opcio_valida = True
-    elif entrada == "t":
+    elif entrada == "teo":
         teorema_del_residu()
         opcio_valida = True
-    elif entrada == "d":
+    elif entrada == "exa":
         trobar_divisor()
         opcio_valida = True
-    elif entrada == "r":
+    elif entrada == "ruf":
         fer_rufini()
+        opcio_valida = True
+    elif entrada == "sum":
+        fer_suma()
+        opcio_valida = True
+    elif entrada == "res":
+        fer_resta()
+        opcio_valida = True
+    elif entrada == "mul":
+        fer_multiplicacio()
+        opcio_valida = True
+    elif entrada == "div":
+        print("No implementat")
         opcio_valida = True
     
     if opcio_valida:
