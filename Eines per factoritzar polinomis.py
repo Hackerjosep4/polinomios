@@ -381,7 +381,7 @@ def teorema_del_residu():
 
         polinomi = demanar_polinomi()
 
-        a = int(input("Introdueix el terma \"a\" del binomi divisor (x - a)")) * -1
+        a = int(input("Introdueix el terma \"a\" del binomi divisor (x - a) : ")) * -1
 
         resultat = residu(polinomi, a)
 
@@ -428,7 +428,7 @@ def fer_rufini():
 
         polinomi = demanar_polinomi()
 
-        a = int(input("Introdueix el terma \"a\" del binomi divisor (x - a)")) * -1
+        a = int(input("Introdueix el terma \"a\" del binomi divisor (x - a) : ")) * -1
 
         resultat, residu = rufini(polinomi, a)
 
