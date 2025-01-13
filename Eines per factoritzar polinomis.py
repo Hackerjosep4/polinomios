@@ -219,7 +219,7 @@ def dividir_polinomis(polinomi_a, polinomi_b):
         polinomi_resultat[grau_resultat - (grau_a - grau_b)] = coef_a / coef_b
 
         for j in range(0, grau_b+1):
-            polinomi_a[i+j] -= monomi * polinomi_b[j]
+            polinomi_a[i+j] -= (coef_a / coef_b) * polinomi_b[j]
     
     return [polinomi_resultat, polinomi_a]
 
