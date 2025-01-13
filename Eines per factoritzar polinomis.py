@@ -4,6 +4,7 @@
 
 
 from math import gcd
+from math import factorial
 from functools import reduce
 from sympy import divisors
 
@@ -225,6 +226,28 @@ def dividir_polinomis(polinomi_a, polinomi_b):
 
 
 
+def punt_triangle_pascal(n, p):
+    if p == 0 or p == n:
+        return 1
+    elif p == 1 or p == n-1:
+        return n
+    else:
+        punt = factorial(n) / (factorial(p) * factorial(n-p))
+        return punt
+
+
+
+def binomi_de_newton(grau):
+    coefs = []
+
+    for i in range(0, grau+1):
+        coefs.append(punt_triangle_pascal(grau, i))
+    
+    return coefs
+
+
+
+
 def print_factors(nums_extra, factors):
 
     output = f"La factorització es: "
@@ -273,6 +296,19 @@ def print_polinomi(polinomi):
 
     for i in range(1, len(polinomi)):
         output += f" + {polinomi[0]}x^{grau - i}"
+    
+    print(output)
+    print("")
+
+
+
+def print_bin_new(coefs):
+    output = f"El polinomi resultant es: "
+
+    output += f"{coefs[0]}(a^0)(b^{len(coefs)-1})"
+
+    for i in range(1, len(coefs)):
+        output += f" + {coefs[i]}(a^{i})(b^{len(coefs)-1-i})"
     
     print(output)
     print("")
@@ -515,6 +551,64 @@ def fer_divisio():
 
 
 
+def  fer_binomi_de_newton():
+
+    try:
+
+        grau = int(input("Introdueix el grau n del binomi ( (a+b)^n ) : "))
+
+        resultat = binomi_de_newton(grau)
+
+        print_bin_new(resultat)
+
+    except ValueError:
+        print("")
+        print("S'ha produit un error inesperat: Entrada inválida. Has de ingresar un nombre natural.")
+        print("")
+
+    except Exception as e:
+        print("")
+        print(f"S'ha produit un error inesperat: {e}")
+        print("")
+
+
+
+def  fer_punt_triangle_pascal():
+
+    try:
+
+        n = int(input("Introdueix la fila n del triangle: "))
+        p = int(input("Introdueix la columna p del triangle: "))
+
+        resultat = punt_triangle_pascal(n, p)
+
+        print(f"Aquest punt del triangle de Pascal es: {resultat}")
+        print("")
+
+    except ValueError:
+        print("")
+        print("S'ha produit un error inesperat: Entrada inválida. Has de ingresar un nombre natural.")
+        print("")
+
+    except Exception as e:
+        print("")
+        print(f"S'ha produit un error inesperat: {e}")
+        print("")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Codi d'interaccio amb l'usuari / Codi d'iniciació del programa
 
@@ -523,20 +617,37 @@ entrada = ""
 while entrada != "s":
     entrada = input('''
 Menu:
-    Fac - Factoritzar polinomi
-    Teo - Teorema del residu
-    Exa - Trobar divisor exacte
-    Ruf - Rufini
-    Sum - Sumar polinomis
-    Res - Restar polinomis
-    Mul - Multiplicar polinomis
-    Div - Dividir polinomis
+    Operacions basiques:
+        Sum - Sumar polinomis
+        Res - Restar polinomis
+        Mul - Multiplicar polinomis
+        Div - Dividir polinomis
+    Factorització:
+        Fac - Factoritzar polinomi
+        Teo - Teorema del residu
+        Exa - Trobar divisor exacte
+        Ruf - Rufini
+    Binomi de Newton:
+        Bin - Binomi de Newton
+        Pas - Punt triangle de Pascal
     S - Sortir
 Opció: ''').strip().lower()
     print("")
 
     opcio_valida = False
-    if entrada == "fac":
+    if entrada == "sum":
+        fer_suma()
+        opcio_valida = True
+    elif entrada == "res":
+        fer_resta()
+        opcio_valida = True
+    elif entrada == "mul":
+        fer_multiplicacio()
+        opcio_valida = True
+    elif entrada == "div":
+        fer_divisio()
+        opcio_valida = True
+    elif entrada == "fac":
         factoritzador()
         opcio_valida = True
     elif entrada == "teo":
@@ -548,17 +659,11 @@ Opció: ''').strip().lower()
     elif entrada == "ruf":
         fer_rufini()
         opcio_valida = True
-    elif entrada == "sum":
-        fer_suma()
+    elif entrada == "bin":
+        fer_binomi_de_newton()
         opcio_valida = True
-    elif entrada == "res":
-        fer_resta()
-        opcio_valida = True
-    elif entrada == "mul":
-        fer_multiplicacio()
-        opcio_valida = True
-    elif entrada == "div":
-        fer_divisio()
+    elif entrada == "pas":
+        fer_punt_triangle_pascal()
         opcio_valida = True
     
     if opcio_valida:
