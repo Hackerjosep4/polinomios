@@ -25,31 +25,6 @@ pip install sympy
 
 O obrir l'archiu ``` Installer.bat ```
 
-## Ús
-
-### Exemples d'ús
-
-#### Factoritzar un polinomi
-1. Selecciona l'opció `F` al menú.
-2. Introdueix el grau del polinomi i els seus coeficients.
-3. El programa retornarà els factors i les solucions possibles.
-
-#### Teorema del residu
-1. Selecciona l'opció `T` al menú.
-2. Introdueix el polinomi i el valor de "a".
-3. El programa calcularà el residu.
-
-#### Regla de Ruffini
-1. Selecciona l'opció `R` al menú.
-2. Introdueix el polinomi i el valor de "a".
-3. El programa aplicarà la regla de Ruffini i mostrarà el resultat i el residu.
-
-## Estructura del codi
-
-- **Imports**: Inclou les biblioteques necessàries.
-- **Funcions**: Funcions per factoritzar, calcular residus, trobar divisors i aplicar Ruffini.
-- **Interacció amb l'usuari**: Un menú interactiu que guia l'usuari a través de les funcionalitats del programa.
-
 ## Errors i excepcions
 
 El programa maneja els següents errors:
