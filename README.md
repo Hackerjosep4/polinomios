@@ -23,7 +23,7 @@ Per instal·lar les dependències necessàries, pots executar:
 pip install sympy
 ```
 
-O obrir l'archiu Installer.bat
+O obrir l'archiu ``` Installer.bat ```
 
 ## Ús
 
