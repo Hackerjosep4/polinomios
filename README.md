@@ -22,6 +22,9 @@ Per instal·lar les dependències necessàries, pots executar:
 ```bash
 pip install sympy
 ```
+
+O obrir l'archiu Installer.bat
+
 ## Ús
 
 ### Exemples d'ús
