@@ -305,10 +305,10 @@ def print_polinomi(polinomi):
 def print_bin_new(coefs):
     output = f"El polinomi resultant es: "
 
-    output += f"{coefs[0]}(a^0)(b^{len(coefs)-1})"
+    output += f"{coefs[0]}(a^{len(coefs)-1})(b^0)"
 
     for i in range(1, len(coefs)):
-        output += f" + {coefs[i]}(a^{i})(b^{len(coefs)-1-i})"
+        output += f" + {coefs[i]}(a^{len(coefs)-1-i})(b^{i})"
     
     print(output)
     print("")
