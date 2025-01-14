@@ -103,7 +103,7 @@ def factoritzar_2_grau(polinomi):
 
 
 def rufini(polinomi, a):
-    a = a * -1
+    a = a * (-1)
     polinomi_nou = []
 
     res_anterior = 0
@@ -112,7 +112,7 @@ def rufini(polinomi, a):
         polinomi_nou.append(res)
         res_anterior = res
 
-        polinomi_nou.pop()
+    polinomi_nou.pop()
 
     return [polinomi_nou, res_anterior]
 
@@ -295,7 +295,7 @@ def print_polinomi(polinomi):
     output += f"{polinomi[0]}x^{grau}"
 
     for i in range(1, len(polinomi)):
-        output += f" + {polinomi[0]}x^{grau - i}"
+        output += f" + {polinomi[i]}x^{grau - i}"
     
     print(output)
     print("")
